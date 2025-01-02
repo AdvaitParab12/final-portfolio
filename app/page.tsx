@@ -108,7 +108,7 @@ export default function Home() {
           transition={{ delay: 0.2 }}
           className="text-4xl md:text-6xl font-bold text-center mb-6 text-foreground"
         >
-          Hi, I'm Advait Parab
+          Hi, I&apos;m Advait Parab
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
