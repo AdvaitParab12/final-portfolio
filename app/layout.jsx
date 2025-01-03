@@ -1,14 +1,19 @@
-import { ThemeProvider } from "@/components/theme-provider"
-import { Inter } from 'next/font/google'
-import { SiteHeader } from "@/components/site-header"
-import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider";
+import { Inter } from "next/font/google";
+import { SiteHeader } from "@/components/site-header";
+import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} min-h-screen bg-background antialiased`}>
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
+      <body
+        className={`${inter.className} min-h-screen bg-background antialiased`}
+      >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
@@ -17,5 +22,5 @@ export default function RootLayout({ children }) {
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
