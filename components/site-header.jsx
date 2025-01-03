@@ -17,7 +17,7 @@ const links = [
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleScroll = (e) => {
     e.preventDefault()
     const href = e.currentTarget.href
     const targetId = href.replace(/.*\#/, "")

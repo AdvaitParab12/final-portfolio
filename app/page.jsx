@@ -1,53 +1,49 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import React from "react";
+
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Github, Globe } from "lucide-react";
 import {
-  CodepenIcon as ReactIcon,
-  GitBranchIcon,
-  DatabaseIcon,
-  CodeIcon,
-  BoxIcon,
-  ServerIcon,
-  BeakerIcon as TestingBeakerIcon,
-  GanttChartIcon,
-  Mail,
-  Phone,
-  ExternalLink,
-  Github,
-} from "lucide-react";
-import {
-  FaHtml5,
-  FaCss3Alt,
-  FaSass,
-  FaGitAlt,
-  FaBootstrap,
-  FaGithub,
   FaReact,
   FaNodeJs,
-  FaBox,
+  FaBoxOpen,
+  FaGitAlt,
+  FaFigma,
+  FaPhoneAlt,
 } from "react-icons/fa";
-import { SiVite, SiTypescript } from "react-icons/si";
-import { RiNextjsFill } from "react-icons/ri";
+import { RiNextjsFill, RiNotionFill } from "react-icons/ri";
+import { IoMdMailUnread } from "react-icons/io";
+import { BiLogoTypescript } from "react-icons/bi";
 import { IoLogoJavascript } from "react-icons/io5";
+import { RiTailwindCssFill } from "react-icons/ri";
+import { TbBrandVite } from "react-icons/tb";
+import { SiShadcnui } from "react-icons/si";
+import { FiGithub, FiExternalLink } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 
-const skills = [
-  { name: "HTML", icon: FaHtml5 },
-  { name: "CSS", icon: FaCss3Alt },
-  { name: "SCSS", icon: FaSass },
-  { name: "Bootstrap", icon: FaBootstrap },
-  { name: "JavaScript", icon: IoLogoJavascript },
-  { name: "Git", icon: FaGitAlt },
-  { name: "Github", icon: FaGithub },
-  { name: "Vite", icon: SiVite },
-  { name: "Parcel", icon: FaBox },
-  { name: "TypeScript", icon: SiTypescript },
-  { name: "Node.js", icon: FaNodeJs },
-  { name: "React", icon: FaReact },
-  { name: "Next.js", icon: RiNextjsFill },
-];
+const skills = {
+  frontend: [
+    { name: "ReactJs", icon: FaReact },
+    { name: "JavaScript", icon: IoLogoJavascript },
+    { name: "HTML/CSS", icon: Globe },
+    { name: "Tailwind CSS", icon: RiTailwindCssFill },
+    { name: "Shadcn/ui", icon: SiShadcnui },
+
+    { name: "TypeScript", icon: BiLogoTypescript },
+  ],
+  backend: [
+    { name: "Node.js", icon: FaNodeJs },
+    { name: "NextJs", icon: RiNextjsFill },
+  ],
+  tools: [
+    { name: "Git", icon: FaGitAlt },
+    { name: "Figma", icon: FaFigma },
+    { name: "Notion", icon: RiNotionFill },
+    { name: "Github", icon: FiGithub },
+    { name: "Parcel", icon: FaBoxOpen },
+    { name: "Vite", icon: TbBrandVite },
+  ],
+};
 
 const projects = [
   {
@@ -56,20 +52,13 @@ const projects = [
       "Rock, Paper, Scissors, Lizard, Spock Overview: Rock, Paper, Scissors, Lizard, Spock is an extended version of the classic game that adds more complexity and options. This game introduces two additional moves—Lizard and Spock—allowing for a greater variety of outcomes and strategies.",
     technologies: ["HTML", "CSS", "JavaScript", "TailwindCSS", "Parcel"],
     demoLink: "https://rpsls-showdown.pages.dev/",
-    githubLink: "https://github.com/AdvaitParab12/RPSLS-Showdown",
+    githubLink: "https://github.com/AdvaitParab12/RPSLS-Showdown/",
   },
   {
     title: "Auto-Persona",
     description:
       "This project is an interactive car configurator built with React and Next.js, allowing users to customize and preview various car features including exterior colors, wheels, interior colors, and seat designs.",
-    technologies: [
-      "NextJs",
-      "React",
-      "TailwindCSS",
-      "DaisyUI",
-      "JavaScript",
-      "CSS",
-    ],
+    technologies: ["React.js", "NextJs", "TailwindCSS", "DaisyUI", "CSS"],
     demoLink: "https://auto-persona.vercel.app/",
     githubLink: "https://github.com/AdvaitParab12/Auto-Persona",
   },
@@ -86,35 +75,68 @@ const projects = [
       "Vite",
     ],
     demoLink: "https://prioritask-v2.pages.dev/",
-    githubLink: "https://github.com/AdvaitParab12/Prioritask-v2",
+    githubLink: "https://github.com/AdvaitParab12/Prioritask-v2/",
   },
   {
     title: "Untitled",
     description:
       "This React-based web application features a responsive design using Tailwind CSS and provides multiple pages for user interaction. The Home Page includes a header, a form section, and an optional sidebar for larger screens. The Submissions Page displays a success message with dynamic user details and a link to view submissions, while the Error Page notifies users of flagged form submissions with an option to retry. A minimal NotFound Page serves as a placeholder for 404 errors. The application leverages react-router-dom for navigation and integrates a utility library for handling dynamic URLs.",
-    technologies: ["HTML", "CSS", "JavaScript", "TailwindCSS", "React", "Vite"],
-    demoLink: "https://untitled-react-app.vercel.app/",
-    githubLink: "https://github.com/AdvaitParab12/Untitled-React-App",
+    technologies: ["HTML", "CSS", "JavaScript", "TailwindCSS", "Vite"],
+    demoLink: "https://untitled-cz5.pages.dev/",
+    githubLink: "https://github.com/AdvaitParab12/Untitled/",
   },
 ];
+
+const SkillCard = ({ category, skills }) => {
+  return (
+    <motion.div
+      className="relative overflow-hidden rounded-xl border-2 border-primary bg-background p-6 shadow-lg"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
+      <h3 className="mb-6 text-center text-2xl font-semibold capitalize text-primary">
+        {category}
+      </h3>
+      <div className="grid grid-cols-2 gap-4">
+        {skills.map(({ name, icon: Icon }) => (
+          <motion.div
+            key={name}
+            className="group flex items-center rounded-md p-2 transition-all duration-300 hover:bg-primary/10"
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="mr-3 rounded-full bg-primary/20 p-2 transition-colors duration-300 group-hover:bg-primary/30">
+              <Icon className="h-6 w-6 text-primary" />
+            </div>
+            <span className="text-sm font-medium text-foreground transition-colors duration-300 group-hover:text-primary">
+              {name}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+      <div className="absolute -bottom-2 -right-2 h-24 w-24 rounded-full bg-primary/10 blur-2xl"></div>
+    </motion.div>
+  );
+};
 
 export default function Home() {
   return (
     <div className="relative">
-      <section className="w-full min-h-screen flex flex-col justify-center items-center p-4 bg-gradient-to-br from-background via-background to-primary/10">
+      <section className="flex min-h-screen w-full flex-col items-center justify-center bg-gradient-to-br from-background via-background to-primary/10 p-4">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-4xl md:text-6xl font-bold text-center mb-6 text-foreground"
+          className="mb-6 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-center text-4xl font-bold text-transparent md:text-6xl animate-gradient-move"
         >
-          Hi, I&apos;m Advait Parab
+          Hi, I'm Advait Parab
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="text-xl md:text-2xl text-center mb-8 max-w-2xl text-zinc-500"
+          className="mb-8 max-w-2xl text-center text-xl text-muted-foreground md:text-2xl "
         >
           Full Stack Developer building accessible, performant web applications
           with modern technologies.
@@ -126,10 +148,10 @@ export default function Home() {
         ></motion.div>
       </section>
 
-      <section id="about" className="py-20 bg-background text-foreground">
+      <section id="about" className="bg-background py-20 text-foreground">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">About Me</h2>
-          <p className="text-lg mb-6">
+          <h2 className="mb-8 text-3xl font-bold">About Me</h2>
+          <p className="mb-6 text-lg">
             Hey there! My name is Advait Parab. I have recently completed my
             Bachelor of Engineering (BE) specialized in Artificial Intelligence
             & Machine Learning from University of Mumbai in 2024.I am a fast
@@ -147,55 +169,46 @@ export default function Home() {
 
       <section
         id="skills"
-        className="py-20 bg-secondary text-secondary-foreground"
+        className="relative overflow-hidden bg-secondary py-20 text-secondary-foreground"
       >
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12">Skills</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {skills.map(({ name, icon: Icon }) => (
-              <motion.div
-                key={name}
-                className="flex flex-col items-center justify-center p-6 bg-background rounded-lg shadow-lg transform transition-all duration-300 "
-                whileHover={{
-                  boxShadow:
-                    "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-                }}
-              >
-                <Icon className="w-12 h-12 mb-4 text-primary" />
-                <h3 className="text-lg font-semibold text-foreground">
-                  {name}
-                </h3>
-              </motion.div>
+        <div className="container relative z-10 mx-auto px-4">
+          <h2 className="mb-12 text-3xl font-bold underline">Skills</h2>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {Object.entries(skills).map(([category, categorySkills]) => (
+              <SkillCard
+                key={category}
+                category={category}
+                skills={categorySkills}
+              />
             ))}
           </div>
         </div>
+        <div className="absolute left-0 top-0 h-full w-full bg-gradient-to-br from-primary/5 to-transparent"></div>
       </section>
 
-      <section id="projects" className="py-20 bg-background text-foreground">
+      <section id="projects" className="bg-background py-20 text-foreground">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12">Projects</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <h2 className="mb-12 text-3xl font-bold">Projects</h2>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((project, index) => (
               <motion.div
                 key={project.title}
-                className="bg-card rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105 border dark:border  dark:dark:border-white"
+                className="transform overflow-hidden rounded-lg border bg-card shadow-lg transition-all duration-300 hover:scale-105 dark:border-zinc-700"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <div className="p-6 flex flex-col h-full">
-                  <h3 className="text-xl font-bold mb-2 underline">
-                    {project.title}
-                  </h3>
-                  <p className="text-zinc-500 mb-4 flex-grow">
+                <div className="flex h-full flex-col p-6">
+                  <h3 className="mb-2 text-xl font-bold">{project.title}</h3>
+                  <p className="mb-4 flex-grow text-muted-foreground">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="mb-4 flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2 py-1 bg-primary/10 text-primary text-sm rounded-full dark:border  dark:dark:border-white"
+                        className="rounded-full bg-primary/10 px-2 py-1 text-sm text-primary"
                       >
                         {tech}
                       </span>
@@ -204,33 +217,31 @@ export default function Home() {
                   <div className="flex space-x-4">
                     <Button
                       asChild
-                      variant="default"
                       size="sm"
-                      className="flex-1 text-white"
+                      className="flex-1 border dark:border-zinc-700 dark:bg-black dark:hover:bg-zinc-700"
                     >
                       <Link
                         href={project.demoLink}
                         target="_blank"
-                        // rel="noopener noreferrer"
+                        rel="noopener noreferrer"
                         className="flex items-center justify-center"
                       >
-                        <ExternalLink className="w-4 h-4 mr-2" />
+                        <FiExternalLink className="mr-2 h-4 w-4" />
                         Demo
                       </Link>
                     </Button>
                     <Button
                       asChild
-                      variant="outline"
                       size="sm"
-                      className="flex-1"
+                      className="flex-1 dark:hover:bg-zinc-700"
                     >
                       <Link
                         href={project.githubLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center"
+                        className="flex items-center justify-center border dark:border-zinc-700 dark:bg-black"
                       >
-                        <Github className="w-4 h-4 mr-2" />
+                        <Github className="mr-2 h-4 w-4" />
                         Code
                       </Link>
                     </Button>
@@ -244,23 +255,23 @@ export default function Home() {
 
       <section
         id="contact"
-        className="py-20 bg-secondary text-secondary-foreground"
+        className="bg-secondary py-20 text-secondary-foreground"
       >
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12">Contact</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <motion.div className="flex items-center space-x-4 p-6 bg-background rounded-lg shadow-lg dark:border-2">
-              <Mail className="w-8 h-8 text-primary" />
+          <h2 className="mb-12 text-3xl font-bold underline">Contact</h2>
+          <div className="grid gap-8 md:grid-cols-2">
+            <motion.div className="flex items-center space-x-4 rounded-lg border-2 bg-background p-6 shadow-lg">
+              <IoMdMailUnread className="h-8 w-8 text-primary" />
               <div>
                 <h3 className="font-semibold text-foreground">Email</h3>
-                <p className="text-zinc-500">advait.parab24@gmail.com</p>
+                <p className="text-muted-foreground">advait0012@proton.me</p>
               </div>
             </motion.div>
-            <motion.div className="flex items-center space-x-4 p-6 bg-background rounded-lg shadow-lg dark:border-2">
-              <Phone className="w-8 h-8 text-primary" />
+            <motion.div className="flex items-center space-x-4 rounded-lg border-2 bg-background p-6 shadow-lg">
+              <FaPhoneAlt className="h-8 w-8 text-primary" />
               <div>
                 <h3 className="font-semibold text-foreground">Phone</h3>
-                <p className="text-zinc-500">+91 8879877449</p>
+                <p className="text-muted-foreground">+91 8879887449</p>
               </div>
             </motion.div>
           </div>

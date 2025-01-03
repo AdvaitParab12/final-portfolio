@@ -5,7 +5,7 @@ import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} min-h-screen bg-background antialiased`}>
@@ -19,4 +19,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
-
