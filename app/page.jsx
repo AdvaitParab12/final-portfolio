@@ -264,7 +264,7 @@ export default function Home() {
               <IoMdMailUnread className="h-8 w-8 text-primary" />
               <div>
                 <h3 className="font-semibold text-foreground">Email</h3>
-                <p className="text-muted-foreground">advait0012@proton.me</p>
+                <p className="text-muted-foreground">advaitparab@phleebs.tech</p>
               </div>
             </motion.div>
             <motion.div className="flex items-center space-x-4 rounded-lg border-2 bg-background p-6 shadow-lg">
