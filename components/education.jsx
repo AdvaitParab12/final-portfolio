@@ -11,7 +11,7 @@ export default function Education() {
     {
       degree:
         "Bachelor of Science in Artificial Intelligence & Machine Learning",
-      institution: "Massachusetts Institute of Technology",
+      institution: "University of Mumbai",
       location: "Navi Mumbai,Maharashtra",
       period: "2021 - 2024",
       description:
